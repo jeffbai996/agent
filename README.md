@@ -6,7 +6,7 @@ A conversation-first web and phone app for a personal agent: ask for something, 
 [![Node 22](https://img.shields.io/badge/Node_22-no_dependencies-6e40c9?style=flat-square&logo=nodedotjs&logoColor=white)](lib/)
 [![PWA](https://img.shields.io/badge/PWA-Web_Push_%C2%B7_SQLite-6e40c9?style=flat-square)](lib/store.mjs)
 
-![Chat view in the OLED theme with a two-leg flight itinerary result, its total, and shortlist actions](docs/images/chat-desktop.jpg)
+![Chat view: the request, the agent's activity with token counts and duration, and a reply comparing three fares](docs/images/chat-desktop.jpg)
 
 `agent` puts a consumer-facing Progressive Web App in front of the [Operator](https://github.com/jeffbai996/operator) execution service. A zero-dependency Node 22 gateway owns conversation links, idempotent delivery receipts, an ordered event log, a full-text search index, and recurring schedules in built-in SQLite (`node:sqlite`), while delegating live runs, browser tabs, and sandboxed desktops to Operator over a signed loopback API. Most of the work went into keeping state honest across reloads, restarts, and second devices: every status comes from recorded events rather than model prose, an interrupted send becomes `unknown` and is never replayed, and approvals bind to a SHA-256 proposal fingerprint so an expired, edited, or superseded action cannot execute.
 
@@ -21,7 +21,7 @@ A conversation-first web and phone app for a personal agent: ask for something, 
 
 ## Screenshots
 
-The view above is a finished turn rendered as a structured result: the agent compared fares, and the flight quote shows each leg, cabin, and the total for both travellers, with shortlist, note, and compare actions. Booking it becomes an approval card with the merchant, total, 15-minute expiry, and the plain-language consequence of approving; the run does not continue until `Approve & continue` is pressed.
+The view above is one finished turn: the request, the agent's activity with its token counts and duration, and a reply that compares three fares. Below the reply, the result renders as a flight quote with each leg, cabin, and the total for both travellers, with shortlist, note, and compare actions. Booking it becomes an approval card with the merchant, total, 15-minute expiry, and the plain-language consequence of approving; the run does not continue until `Approve & continue` is pressed.
 
 | Saved results and full-text search | Source-linked Ideas |
 | :---: | :---: |
@@ -35,7 +35,7 @@ The view above is a finished turn rendered as a structured result: the agent com
   </tr>
 </table>
 
-Phone layout on a 390 px viewport in the OLED theme: the same conversation's itinerary (left), and the Ongoing decision queue with the booking waiting on approval (right).
+Phone layout on a 390 px viewport in the OLED theme: the flight quote from the same conversation (left), and the Ongoing decision queue with the booking waiting on approval (right).
 
 ## Architecture
 
